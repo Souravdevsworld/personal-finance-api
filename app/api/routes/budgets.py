@@ -1,6 +1,6 @@
 from typing import Annotated
 
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, Path, status
 from sqlalchemy.orm import Session
 
 from app.api.dependencies import get_current_user
@@ -47,7 +47,13 @@ def list_budgets_endpoint(
 
 @router.get("/{budget_id}", response_model=BudgetResponse)
 def get_budget_endpoint(
-    budget_id: int,
+        budget_id: Annotated[
+            int,
+            Path(
+                ge=1,
+                le=9223372036854775807,
+            ),
+        ],
     db: Annotated[Session, Depends(get_db)],
     current_user: Annotated[User, Depends(get_current_user)],
 ) -> Budget:
@@ -62,7 +68,13 @@ def get_budget_endpoint(
 
 @router.put("/{budget_id}", response_model=BudgetResponse)
 def update_budget_endpoint(
-    budget_id: int,
+        budget_id: Annotated[
+            int,
+            Path(
+                ge=1,
+                le=9223372036854775807,
+            ),
+        ],
     update_data: BudgetUpdate,
     db: Annotated[Session, Depends(get_db)],
     current_user: Annotated[User, Depends(get_current_user)],
@@ -78,7 +90,13 @@ def update_budget_endpoint(
 
 @router.delete("/{budget_id}")
 def delete_budget_endpoint(
-    budget_id: int,
+        budget_id: Annotated[
+            int,
+            Path(
+                ge=1,
+                le=9223372036854775807,
+            ),
+        ],
     db: Annotated[Session, Depends(get_db)],
     current_user: Annotated[User, Depends(get_current_user)],
 ) -> dict[str, str]:

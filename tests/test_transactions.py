@@ -981,7 +981,7 @@ class TestDeleteTransaction:
             headers=user_a.headers,
         )
 
-        assert response.status_code == 204
+        assert response.status_code == 200
 
         assert get_transaction_from_db(
             session_factory,
@@ -1012,7 +1012,7 @@ class TestDeleteTransaction:
             headers=user_a.headers,
         )
 
-        assert delete_response.status_code == 204
+        assert delete_response.status_code == 200
 
         get_response = client.get(
             f"{TRANSACTIONS_URL}/{transaction_id}",

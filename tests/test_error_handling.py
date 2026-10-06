@@ -87,3 +87,6 @@ def test_unexpected_exception_returns_500() -> None:
     assert response.json() == {
         "detail": "Internal server error"
     }
+
+    
+

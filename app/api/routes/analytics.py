@@ -23,7 +23,7 @@ from app.services.analytics_service import (
 
 router = APIRouter(prefix="/api/analytics", tags=["Analytics"])
 
-MONTH_PATTERN = r"^\d{4}-(0[1-9]|1[0-2])$"
+MONTH_PATTERN = r"^(19|20)[0-9]{2}-(0[1-9]|1[0-2])$"
 
 MonthQuery = Annotated[
     str | None,
